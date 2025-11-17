@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Happy Birthday, Abhigya Mukherjee!</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+            color: #222;
+            text-align: center;
+            margin: 0;
+            padding-bottom: 50px;
+            overflow-x: hidden;
+        }
+        h1 {
+            font-size: 3.2rem;
+            margin-top: 60px;
+            animation: fadeIn 2s ease forwards;
+        }
+        .heart {
+            color: #ff3366;
+            animation: bounce 1.5s infinite;
+            display: inline-block;
+            margin-left: 10px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0);}
+            40% { transform: translateY(-15px);}
+            60% { transform: translateY(-7px);}
+        }
+        p, h2 {
+            margin: 20px auto;
+            max-width: 600px;
+        }
+        button {
+            background-color: #ff497c;
+            border: none;
+            border-radius: 25px;
+            color: white;
+            font-size: 1.2em;
+            padding: 12px 25px;
+            margin: 15px 10px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 73, 124, 0.4);
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #e63960;
+        }
+        #message {
+            max-width: 600px;
+            margin: 20px auto;
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(245, 105, 129, 0.3);
+            display: none;
+            font-size: 1.3rem;
+            color: #d6336c;
+            line-height: 1.5;
+        }
+        .slideshow {
+            max-width: 620px;
+            margin: 30px auto;
+            position: relative;
+        }
+        .slide {
+            display: none;
+            border-radius: 15px;
+            max-width: 100%;
+            height: auto;
+            box-shadow: 0 10px 20px rgba(230, 70, 108, 0.3);
+        }
+        .active {
+            display: block;
+            animation: fadeIn 1.5s ease forwards;
+        }
+        .caption {
+            font-style: italic;
+            margin-top: 8px;
+            color: #a83263;
+        }
+        audio {
+            margin-top: 20px;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Happy Birthday, Abhigya Mukherjee! <span class="heart">❤️</span></h1>
+    <p>Click the button below for a surprise message from me!</p>
+    <button onclick="showMessage()">Reveal My Message</button>
+
+    <div id="message">
+        <p>
+            Dear Abhigya Mukherjee,<br />
+            hey abhigya its me your bachcha. Happy 15th birthday. Hope you enjoy your day. Thank you for being with me. Thank you believing me. Thank you for loving me when days were tough. You were, you are, and you will be the best part of my life. I love you so much. Thank you for not giving up on me. 🎉❤️
+        </p>
+        <button onclick="startConfetti()">Celebrate with Confetti!</button>
+    </div>
+
+    <h2>Our Memories</h2>
+    <div class="slideshow">
+        <img class="slide active" src="photo1.jpg" alt="Memory 1" />
+        <p class="caption">A lovely moment of you, Abhigya</p>
+        <img class="slide" src="photo2.jpg" alt="Memory 2" />
+        <p class="caption">Beautiful Abhigya with her radiant smile</p>
+        <img class="slide" src="photo3.jpg" alt="Memory 3" />
+        <p class="caption">Cherished memories together</p>
+        <img class="slide" src="photo4.jpg" alt="Memory 4" />
+        <p class="caption">Sweet moment of Abhigya with red lighting</p>
+        <img class="slide" src="photo5.jpg" alt="Memory 5" />
+        <p class="caption">Us together, happy moments captured</p>
+    </div>
+    <button onclick="nextSlide()">Next Memory</button>
+
+    <div>
+        <audio id="bgMusic" loop>
+            <source src="birthday-song.mp3" type="audio/mpeg" />
+            Your browser does not support the audio element.
+        </audio>
+        <br />
+        <button onclick="toggleMusic()">Play/Pause Music</button>
+    </div>
+
+    <!-- Confetti library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    
+    <script>
+        let slideIndex = 0;
+        const slides = document.querySelectorAll(".slide");
+        const captions = document.querySelectorAll(".caption");
+        
+        function nextSlide() {
+            slides[slideIndex].classList.remove("active");
+            captions[slideIndex].style.display = "none";
+            slideIndex = (slideIndex + 1) % slides.length;
+            slides[slideIndex].classList.add("active");
+            captions[slideIndex].style.display = "block";
+        }
+        // Initialize captions visiblity
+        captions.forEach((caption, idx) => {
+            caption.style.display = idx === 0 ? "block" : "none";
+        });
+        
+        function showMessage() {
+            document.getElementById("message").style.display = "block";
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+        
+        function toggleMusic() {
+            const music = document.getElementById("bgMusic");
+            if(music.paused) {
+                music.play();
+            } else {
+                music.pause();
+            }
+        }
+        
+        function startConfetti() {
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+        }
+    </script>
+</body>
+</html>
